@@ -1,0 +1,43 @@
+﻿@using DomainLayer.Models
+@model Group
+
+@{
+    ViewData["Title"] = "AddStudent";
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+
+        <form asp-action="AddStudent">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <h2>@Html.DisplayFor(model => model.Name)</h2>
+
+            @*@Html.DropDownListFor(model => model, ViewBag.ListStudents as SelectList)*@
+
+            <div class="editor-label"><b>Студентики</b></div>
+            @{
+                foreach (Student student in ViewBag.Students as IEnumerable<Student>)
+                {
+                    <input type="checkbox" name="selectedStudents" value="@student.ID"
+                    @(Model.Students.Any(x => x.Student == student && x.GroupGuid == Model.ID) ? "checked=\"checked\"" : "") />@student.Name <br />
+                }
+            }
+            <hr />
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary" asp-action="AddStudent" />
+            </div>
+        </form>
+
+
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Вернуться</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

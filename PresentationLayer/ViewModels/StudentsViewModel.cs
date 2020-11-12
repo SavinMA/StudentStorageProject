@@ -1,0 +1,16 @@
+﻿using PresentationLayer.Models;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace PresentationLayer.ViewModels
+{
+    public class StudentsViewModel
+    {
+        public IEnumerable<StudentsModel> Students { get; set; }
+        public PageViewModel PageViewModel { get; set; }
+        public FilterStudentViewModel Filter { get; set; }
+    }
+}

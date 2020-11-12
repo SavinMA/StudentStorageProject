@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20201111154932_InitialCreate.cs" />
+    <Compile Remove="Migrations\20201111154932_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20201111194447_updateSetterForUniqueId.cs" />
+    <Compile Remove="Migrations\20201111194447_updateSetterForUniqueId.Designer.cs" />
+    <Compile Remove="Migrations\20201111194901_Rename_UniqueID.cs" />
+    <Compile Remove="Migrations\20201111194901_Rename_UniqueID.Designer.cs" />
+    <Compile Remove="Migrations\20201111200335_add_IsUnique_to_UniqueIds.cs" />
+    <Compile Remove="Migrations\20201111200335_add_IsUnique_to_UniqueIds.Designer.cs" />
+    <Compile Remove="Migrations\20201111201332_InitialCreate.cs" />
+    <Compile Remove="Migrations\20201111201332_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20201112160520_InitialCreate.cs" />
+    <Compile Remove="Migrations\20201112160520_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20201112181741_InitialCreate.cs" />
+    <Compile Remove="Migrations\20201112181741_InitialCreate.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DomainLayer\DomainLayer.csproj" />
+  </ItemGroup>
+
+</Project>

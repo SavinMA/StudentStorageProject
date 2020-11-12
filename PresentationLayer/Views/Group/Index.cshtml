@@ -1,0 +1,59 @@
+﻿@using PresentationLayer.ViewModels
+@model GroupViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Список групп</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Создать новую группу </a>
+</p>
+
+<form asp-action="Index" method="get">
+    <div class="form-inline form-group">
+        <label class="control-label mx-1">Название группы: </label>
+        <input name="groupName" class="form-control" value="@Model.Filter.GroupName" />
+
+        <input type="submit" value="Фильтр" class="btn btn-primary my-2" asp-action="Index" />
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Наименование
+            </th>
+            <th>
+                Количество студентов
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Groups) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GroupName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentCount)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-secondary">Редактировать</a> |
+                <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-success">Подробнее</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Удалить</a> |
+                <a asp-action="AddStudent" asp-route-id="@item.ID" class="btn btn-primary">Добавить студента в группу</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

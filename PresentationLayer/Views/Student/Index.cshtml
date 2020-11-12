@@ -1,0 +1,97 @@
+﻿@using PresentationLayer.ViewModels
+@model StudentsViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <div class="form-group">
+        <a class="btn btn-primary" asp-action="Create">Создать новую карточку</a>
+    </div>
+
+    <form asp-action="Index" method="get">
+        <div class="form-inline form-group">
+            <label class="control-label mx-1">Пол: </label>
+            <input name="gender" class="form-control" value="@Model.Filter.Gender"/>
+
+            <label class="control-label mx-1">ФИО: </label>
+            <input name="fio" class="form-control" value="@Model.Filter.FIO"/>
+
+            <label class="control-label mx-1">UID: </label>
+            <input name="uid" class="form-control" value="@Model.Filter.UID"/>
+
+            <label class="control-label mx-1">Название группы: </label>
+            <input name="groupName" class="form-control" value="@Model.Filter.GroupName"/>
+
+            <input type="submit" value="Фильтр" class="btn btn-primary my-2" asp-action="Index" />
+        </div>
+    </form>
+    <hr />      
+    @if (Model.PageViewModel.HasPreviousPage)
+    {
+        <a asp-action="Index"
+           asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+           class="btn btn-outline-dark">
+            Назад
+        </a>
+    }
+    @if (Model.PageViewModel.HasNextPage)
+    {
+        <a asp-action="Index"
+           asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+           class="btn btn-outline-dark">
+            Вперед
+        </a>
+    }
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                ФИО
+            </th>
+            <th>
+                UID
+            </th>
+            <th>
+                Группы
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Students)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FIO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UID)
+                </td>
+                <td>
+                    @foreach (var group in item.GroupNames)
+                    {
+                        <div>@group</div>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Редактировать</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Подробнее</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+
+    
+</table>
